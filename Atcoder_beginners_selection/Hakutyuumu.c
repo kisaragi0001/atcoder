@@ -12,6 +12,7 @@ int main()
     char *p = s;
 
     int length = strlen(s);
+    p += length;
 
     int count = 0;
     int success = 0;
@@ -22,30 +23,28 @@ int main()
             success = 1;
             break;
         }
-        else if (strncmp(p, s2, 7) == 0)
+        else if ((length - count) >= 7 && strncmp(p-7, s2, 7) == 0)
         {
-            p += 7;
             count += 7;
+            p -= 7;
+            continue;
         }
-        else if (strncmp(p, s4, 6) == 0)
+        else if ((length - count) >= 6 && strncmp(p-6, s4, 6) == 0)
         {
-            p += 6;
             count += 6;
+            p -=6;
+            continue;
         }
-        else if (strncmp(p, s1, 5) == 0)
+        else if ((length - count) >= 5)
         {
-            p += 5;
-            count += 5;
+            if (strncmp(p-5, s1, 5) == 0 || strncmp (p-5, s3, 5) == 0)
+            {
+                count += 5;
+                p -= 5;
+                continue;
+            }
         }
-        else if (strncmp(p, s3, 5) == 0)
-        {
-            p += 5;
-            count += 5;
-        }
-        else
-        {
-            break;
-        }
+        break;
     }
 
     if (success == 1)
