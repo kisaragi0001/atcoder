@@ -1,36 +1,45 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct
+static inline int fast_input()
 {
-    int t;
-    int x;
-    int y;
-} Traveling;
+    int n = 0;
+    int c = getchar();
+    while (c < '0' || c > '9')
+        c = getchar();
+    while (c >= '0' && c <= '9')
+    {
+        n = 10 * n + (c - '0');
+        c = getchar();
+    }
+    return n;
+
+}
 
 int main()
 {
     int n;
-    scanf("%d", &n);
-    Traveling *TL = (Traveling *)malloc(n * sizeof(Traveling));
-    for (int i = 0; i < n; i++)
-        scanf("%d %d %d", &TL[i].t, &TL[i].x, &TL[i].y);
+    int t = 0, nx = 0, ny = 0;
+    n = fast_input();
 
-    int nx = 0;
-    int ny = 0;
-    int t = 0;
     for (int i = 0; i < n; i++)
     {
-        int judge = (TL[i].t - t) - (abs(TL[i].x - nx) + abs(TL[i].y - ny));
+        int t2 = fast_input();
+
+        int x = fast_input();
+
+        int y = fast_input();
+
+        int judge = (t2 - t) - (abs(nx - x) + abs(ny - y));
         if (judge < 0 || judge % 2 != 0)
         {
             printf("No\n");
             return 0;
         }
-        nx = TL[i].x;
-        ny = TL[i].y;
-        t = TL[i].t;
 
+        t = t2;
+        nx = x;
+        ny = y;
     }
     printf("Yes\n");
     return 0;
