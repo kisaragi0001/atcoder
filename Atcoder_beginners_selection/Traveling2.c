@@ -13,7 +13,6 @@ static inline int fast_input()
         c = getchar();
     }
     return n;
-
 }
 
 int main()
