@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define N 100010
+
 static inline int fast_input()
 {
     int n = 0;
@@ -93,8 +95,8 @@ int main()
     int n = fast_input();
     Tree *tree = (Tree *)malloc(n * sizeof(Tree));
     Edge *edge = (Edge *)malloc((n - 1) * sizeof(Edge));
-    int table[100000];
-    for (int i = 0; i < 100000; i++)
+    int table[N];
+    for (int i = 0; i < N; i++)
         table[i] = -1;
     
     int index_t = 0;
